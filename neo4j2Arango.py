@@ -433,6 +433,8 @@ if INGEST_ONLY == False:
                                 all_relationships[el]["from"].add(ls)
                                 all_relationships[el]["to"].add(le)
 
+                                # @jas-upm update to include properties of the edge if available
+                                edge.update(data.get("properties", {}) or {})
 
                                 fh_e.write(json.dumps(edge)+"\n")
                                 num_edges = num_edges + 1
@@ -447,6 +449,9 @@ if INGEST_ONLY == False:
                         #Add from and to vertex collections
                         all_relationships[el]["from"].add(NODE_COLLECTION)
                         all_relationships[el]["to"].add(NODE_COLLECTION)
+
+                        # @jas-upm update to include properties of the edge if available
+                        edge.update(data.get("properties", {}) or {})
                                 
                         fh_e.write(json.dumps(edge)+"\n")
 
